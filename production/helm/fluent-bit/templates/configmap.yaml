@@ -39,6 +39,9 @@ data:
           {{- else }}
         Url {{ .Values.loki.serviceScheme }}://{{ include "loki.serviceName" . }}:{{ .Values.loki.servicePort }}{{ .Values.loki.servicePath }}
         {{- end }}
+        {{- if .Values.tenantId }}
+        TenantID {{ .Values.tenantId }}
+        {{- end }}
         Labels {{ .Values.config.labels }}
         RemoveKeys {{ include "helm-toolkit.utils.joinListWithComma" .Values.config.removeKeys }}
         LabelMapPath /fluent-bit/etc/labelmap.json
